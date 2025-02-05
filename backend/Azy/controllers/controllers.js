@@ -42,7 +42,7 @@ export const create = async (req, res) => {
     const paths = path.extname(file.name);
     const image = file.md5 + paths;
     const url = `${req.protocol}://${req.get("host")}/uploads/${image}`; 
-    file.mv(`/workspaces/TugasSekolah/public/uploads/${image}`);
+    file.mv(`./public/uploads/${image}`);
     
     try {
 
