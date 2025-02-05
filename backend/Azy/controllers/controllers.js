@@ -17,23 +17,19 @@ export const Search = async (req, res) => {
         const { name } = req.body; // menggunakan query string jika nama di query
         console.log(name);
 
-        if (!name) {
-            console.log("Perlu masukan data");
-            return res.status(401).json({ message: "Anda tidak mencari apapun" });
-        } else {
-            const data = await Datas.findAll({
-                where: {
-                    name:{
-                        [Op.like]: `%${name}%`
-                    }
+        const data = await Datas.findAll({
+            where: {
+                name:{
+                    [Op.like]: `%${name}%`
                 }
-            });
-            if (!data) {
-                return res.status(401).json({ message: "Data tidak ditemukan" });
-            } else {
-                res.json(data);
-            }
+            }})
+        if (data==null){
+            res.status(404).json({ message: "Data tidak ditemukan" });
+        }else{
+            res.status(201).json(data);
+            console.log("w");
         }
+        
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
