@@ -25,11 +25,11 @@ export const User = db.define('form',{
 },
 {freezeTableName: true});
 
-// (async () => {
-//     try {
-//         await db.sync({ alter: true }); // Menyesuaikan tabel jika ada perubahan
-//         console.log("Database synchronized successfully");
-//     } catch (error) {
-//         console.error("Failed to synchronize database:", error);
-//     }
-// })();
+(async () => {
+    try {
+        await db.sync({ alter: true }); // Menyesuaikan tabel jika ada perubahan
+        console.log("Database synchronized successfully");
+    } catch (error) {
+        console.error("Failed to synchronize database:", error);
+    }
+})();
