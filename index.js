@@ -1,5 +1,5 @@
 import express from 'express';
-import router from '../routes/index.js';
+import router from './backend/Azy/routes/routes.js';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 
