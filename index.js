@@ -7,7 +7,7 @@ import fileUpload from 'express-fileupload';
 const app = express();
 
 
-const port = 6001;
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -16,5 +16,7 @@ app.use(express.json());
 app.use(fileUpload());
 app.use(router);
 
-
-app.listen(port, () => console.log(`http://localhost:${port}`));
+const PORT = process.env.PORT || 6001;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
