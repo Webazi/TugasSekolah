@@ -1,6 +1,6 @@
 import path from 'path';
 import { Op } from "sequelize";
-import { Datas, User } from '/workspaces/TugasSekolah/backend/Azy/models/models.js';
+import { Datas, User } from '../models/models.js';
 
 // Controller
 export const Datass = async (req, res) => {

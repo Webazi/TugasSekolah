@@ -1,5 +1,5 @@
 import express from "express";
-import { create, Datass, Search, SignUp } from "/workspaces/TugasSekolah/backend/Azy/controllers/controllers.js";
+import { create, Datass, Search, SignUp } from "../controllers/controllers.js";
 import multer from "multer";
 
 
