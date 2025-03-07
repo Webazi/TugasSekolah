@@ -88,3 +88,17 @@ export const SignUp = async (req, res) => {
         res.status(404).json({ message: "Gagal membuat data", error: error.message });
     }
 }
+
+export const Delete = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const query = await Datas.destroy({
+            where: {
+                id: id
+            }
+        });
+        res.status(201).json({ message: "Data berhasil dihapus" });
+    } catch (error) {
+        res.status(404).json({ message: "Gagal menghapus data", error: error.message });
+    }
+}
