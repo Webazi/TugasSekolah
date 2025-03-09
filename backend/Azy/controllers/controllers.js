@@ -92,6 +92,7 @@ export const Delete = async (req, res) => {
     const { id } = req.params;
     try {
         const query = await Datas.destroy({ where: { id } });
+        console.log("ID:", id, "Deleted Rows:", query); // Debug log
 
         if (query === 0) {
             return res.status(404).json({ message: "Data tidak ditemukan" });
