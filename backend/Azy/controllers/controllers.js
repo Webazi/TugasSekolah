@@ -100,5 +100,6 @@ export const Delete = async (req, res) => {
         res.status(201).json({ message: "Data berhasil dihapus" });
     } catch (error) {
         res.status(404).json({ message: "Gagal menghapus data", error: error.message });
+        console.log(error);
     }
 }
