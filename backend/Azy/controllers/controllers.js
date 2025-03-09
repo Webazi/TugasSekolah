@@ -88,18 +88,18 @@ export const SignUp = async (req, res) => {
         res.status(404).json({ message: "Gagal membuat data", error: error.message });
     }
 }
-
 export const Delete = async (req, res) => {
     const { id } = req.params;
     try {
-        const query = await Datas.destroy({
-            where: {
-                id: id
-            }
-        });
-        res.status(201).json({ message: "Data berhasil dihapus" });
+        const query = await Datas.destroy({ where: { id } });
+
+        if (query === 0) {
+            return res.status(404).json({ message: "Data tidak ditemukan" });
+        }
+
+        res.status(200).json({ message: "Data berhasil dihapus" });
     } catch (error) {
-        res.status(404).json({ message: "Gagal menghapus data", error: error.message });
-        console.log(error);
+        console.error(error);
+        res.status(500).json({ message: "Terjadi kesalahan", error: error.message });
     }
-}
+};
