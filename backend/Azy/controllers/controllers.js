@@ -1,7 +1,7 @@
 import path from 'path';
 import { Op } from "sequelize";
 import { Datas, User } from '../models/models.js';
-
+import fs from 'fs';
 // Controller
 export const Datass = async (req, res) => {
     try {
@@ -92,6 +92,7 @@ export const Delete = async (req, res) => {
     const { id } = req.params;
     try {
         const query = await Datas.destroy({ where: { id } });
+        fs.unlinkSync(`./public/uploads/${Datas.img}`); // Delete image from uploads folder
         console.log("ID:", id, "Deleted Rows:", query); // Debug log
 
         if (query === 0) {
