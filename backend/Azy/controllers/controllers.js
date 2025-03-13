@@ -88,16 +88,24 @@ export const SignUp = async (req, res) => {
         res.status(404).json({ message: "Gagal membuat data", error: error.message });
     }
 }
+
 export const Delete = async (req, res) => {
     const { id } = req.params;
     try {
-        const query = await Datas.destroy({ where: { id } });
-        fs.unlinkSync(`./public/uploads/${Datas.img}`); // Delete image from uploads folder
-        console.log("ID:", id, "Deleted Rows:", query); // Debug log
-
-        if (query === 0) {
+        // Ambil data sebelum dihapus
+        const data = await Datas.findOne({ where: { id } });
+        if (!data) {
             return res.status(404).json({ message: "Data tidak ditemukan" });
         }
+
+        // Hapus file jika ada
+        const filePath = `./public/uploads/${data.img}`;
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+
+        // Hapus data dari database
+        const query = await Datas.destroy({ where: { id } });
 
         res.status(200).json({ message: "Data berhasil dihapus" });
     } catch (error) {
