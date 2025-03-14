@@ -10,7 +10,6 @@ export const Datass = async (req, res) => {
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify(data)); // Tanpa indentasi
         };
-        next();
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
