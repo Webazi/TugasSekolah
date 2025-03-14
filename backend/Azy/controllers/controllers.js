@@ -6,7 +6,11 @@ import fs from 'fs';
 export const Datass = async (req, res) => {
     try {
         const data = await Datas.findAll();
-        res.json(data);
+        res.json = (data) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(data)); // Tanpa indentasi
+        };
+        next();
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
